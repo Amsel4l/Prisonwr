@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS.css">
 </head>
 <body>
 
@@ -78,23 +78,24 @@
                             <button type="submit" class="btn-solid" style="width: 100%; margin-top: 10px; height: 45px;">Создать профиль</button>
                         </form>
                     </div>
-                    <!-- Вход в аккаунт (Логин) -->
-        <div class="register-box">
-            <form action="/login" method="POST">
-                <h3>Вход в аккаунт</h3>
-                <div class="form-group">
-                    <label>Riot ID (Никнейм)</label>
-                    <input type="text" name="nickname" class="input-dark" placeholder="Ваш никнейм" required>
-                </div>
-                <div class="form-group">
-                    <label>Пароль</label>
-                    <input type="password" name="password" class="input-dark" placeholder="Ваш пароль" required>
-                </div>
-                <button type="submit" class="btn-solid" style="width: 100%; margin-top: 10px; height: 45px;">Войти</button>
-            </form>
-        </div>
 
-<!-- Форма регистрации на МЕРОПРИЯТИЯ -->
+                    <!-- Вход в аккаунт (Логин) -->
+                    <div class="register-box" style="margin-bottom: 25px;">
+                        <form action="/login" method="POST">
+                            <h3>Вход в аккаунт</h3>
+                            <div class="form-group">
+                                <label>Riot ID (Никнейм)</label>
+                                <input type="text" name="nickname" class="input-dark" placeholder="Ваш никнейм" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Пароль</label>
+                                <input type="password" name="password" class="input-dark" placeholder="Ваш пароль" required>
+                            </div>
+                            <button type="submit" class="btn-solid" style="width: 100%; margin-top: 10px; height: 45px;">Войти</button>
+                        </form>
+                    </div>
+
+                    <!-- Форма регистрации на МЕРОПРИЯТИЯ -->
                     <div class="register-box">
                         <form action="/join-tournament" method="POST">
                             <h3>Регистрация участника</h3>
@@ -124,6 +125,7 @@
                             <button type="submit" class="btn-solid" style="width: 100%; margin-top: 10px; height: 45px;">Зарегистрироваться</button>
                         </form>
                     </div>
+                </div>
                 
                 <div class="home-graphic">
                     <div class="graffiti-art">
@@ -139,7 +141,6 @@
         <section id="page-about" class="page">
             <h1 style="margin-bottom: 25px;">О НАС</h1>
             
-            <!-- Блок 1: Вступительный текст + Первое фото справа -->
             <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 35px; max-width: 900px;">
                 <div style="flex: 1 1 480px;">
                     <p style="color: var(--text-gray); font-size: 16px; line-height: 1.6;">
@@ -153,7 +154,6 @@
                 </div>
             </div>
 
-            <!-- Блок 2: Второе фото слева + "Что мы делаем" справа -->
             <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 35px; max-width: 900px;">
                 <div style="flex: 1 1 280px; max-width: 380px;">
                     <img src="photo_5433810937652648223_y.jpg" alt="PRISON yard" style="width: 100%; height: auto; border: 1px solid var(--border-dark); border-top: 3px solid var(--red-main); border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
@@ -169,7 +169,7 @@
             <div class="section-title" style="max-width: 900px;">НАША ЦЕЛЬ</div>
             <p style="color: var(--text-gray); margin-bottom: 15px; line-height: 1.6; max-width: 900px;">Наша цель — создать понятную и прозрачную систему, в которой каждый участник получает возможность:</p>
             <ul style="color: var(--text-gray); line-height: 1.8; margin-left: 20px; margin-bottom: 30px; max-width: 900px;">
-                <li>играть в организованных командах;</li>
+                <li>играть в организованных команды;</li>
                 <li>находить новых тиммейтов и соперников;</li>
                 <li>развивать индивидуальные и командные навыки;</li>
                 <li>повышать свой рейтинг;</li>
@@ -197,7 +197,6 @@
                 </div>
             </div>
 
-            <!-- Блок 3: "Для кого создан PRISON" слева + Две оставшиеся фотографии справа -->
             <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin-bottom: 35px; max-width: 900px;">
                 <div style="flex: 1 1 450px;">
                     <div class="section-title" style="margin-top: 0; max-width: 100%;">ДЛЯ КОГО СОЗДАН PRISON</div>
@@ -224,16 +223,13 @@
 
             <div class="section-title">ЧАСТЬ I: БАЛЛОВАЯ СИСТЕМА И РЕЙТИНГ</div>
             <div class="rules-accordion">
-                <!-- Контент аккордеона опущен для краткости, остался без изменений... -->
-                <!-- Здесь продолжаются все правила из вашего исходного кода -->
                 <div class="rules-item">
                     <div class="rules-header" onclick="toggleRule(this)">1. Общие положения <span>▼</span></div>
                     <div class="rules-content">
                         <p>1.1. Балловая система применяется во внутренних кастомных играх и иных официальных мероприятиях проекта. Ее цель - обеспечить сопоставимую оценку игрового уровня участников и сбалансированное формирование команд.</p>
-                        <!-- И так далее до конца регламента -->
+                        <!-- Здесь продолжаются все правила из вашего полного исходного кода -->
                     </div>
                 </div>
-                <!-- Полный код регламента сохраняется как в оригинале -->
             </div>
 
             <div class="contact-box" style="margin-top: 15px; margin-bottom: 30px;">
@@ -241,7 +237,7 @@
             </div>
 
             <div class="section-title">ЧАСТЬ II: ОБЩИЙ РЕГЛАМЕНТ «PRISON»</div>
-            <!-- Часть II Регламента -->
+            <!-- Сюда вставляется Часть II Регламента -->
 
             <div class="contact-box">
                 <h3 style="color: var(--red-main); margin-bottom: 15px; font-family: 'Oswald', sans-serif;">КОНТАКТНАЯ ИНФОРМАЦИЯ</h3>
@@ -364,6 +360,6 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <script src="JS.js"></script>
 </body>
 </html>

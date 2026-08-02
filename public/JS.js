@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Проверяем, заходил ли пользователь раньше, и меняем "Гость" на его ник
+    // 1. Проверяем, заходил ли пользователь раньше, и меняем "Гость" в профиле на его ник
     const currentUser = localStorage.getItem('loggedInUser');
     if (currentUser) {
-        const userStatusElement = document.querySelector('.user-status, #guest-label'); 
-        if (userStatusElement) {
-            userStatusElement.textContent = currentUser;
+        // Исправлен селектор для точного попадания в профиль (id="profile-username" из HTML)
+        const userProfileName = document.querySelector('#profile-username'); 
+        if (userProfileName) {
+            userProfileName.textContent = currentUser;
         }
     }
 
@@ -71,10 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(result.message);
                     loginForm.reset();
                     
-                    // Сразу меняем статус "Гость" в шапке сайта без перезагрузки
-                    const userStatusElement = document.querySelector('.user-status, #guest-label');
-                    if (userStatusElement) {
-                        userStatusElement.textContent = result.nickname;
+                    // Сразу меняем статус "Гость" в профиле без перезагрузки
+                    const userProfileName = document.querySelector('#profile-username');
+                    if (userProfileName) {
+                        userProfileName.textContent = result.nickname;
                     }
                 } else {
                     alert(result.message);
