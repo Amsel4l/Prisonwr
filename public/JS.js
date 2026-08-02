@@ -1,17 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Проверяем, заходил ли пользователь раньше, и меняем "Гость" в профиле на его ник
-    const currentUser = localStorage.getItem('loggedInUser');
-    if (currentUser) {
-        // Исправлен селектор для точного попадания в профиль (id="profile-username" из HTML)
-        const userProfileName = document.querySelector('#profile-username'); 
-        if (userProfileName) {
-            userProfileName.textContent = currentUser;
-        }
+    // 1. Переключение страниц по клику на меню и кнопки (data-target)
+    const navTargets = document.querySelectorAll('[data-target]');
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('nav a');
+
+    navTargets.forEach(target => {
+        target.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = target.getAttribute('data-target');
+            
+            // Переключаем активный раздел
+            pages.forEach(page => {
+                if (page.id === `page-${targetId}`) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+
+            // Подсвечиваем пункт меню
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-target') === targetId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // 2. Открытие календаря турниров
+    const btnCalendar = document.getElementById('btn-toggle-calendar');
+    const scheduleBox = document.getElementById('schedule-box');
+    if (btnCalendar && scheduleBox) {
+        btnCalendar.addEventListener('click', () => {
+            const isHidden = scheduleBox.style.display === 'none' || scheduleBox.style.display === '';
+            scheduleBox.style.display = isHidden ? 'block' : 'none';
+        });
     }
 
-    // 2. Универсальная функция для отправки форм без перезагрузки
-    const handleFormSubmit = (formSelector, successCallback) => {
+    // 3. Отображение сохраненного пользователя в профиле
+    const currentUser = localStorage.getItem('loggedInUser');
+    if (currentUser) {
+        const userProfileName = document.querySelector('#profile-username'); 
+        if (userProfileName) userProfileName.textContent = currentUser;
+    }
+
+    // 4. Универсальная отправка форм
+    const handleFormSubmit = (formSelector) => {
         const form = document.querySelector(formSelector);
         if (!form) return;
 
@@ -32,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (result.success) {
                     alert(result.message);
                     form.reset();
-                    if (successCallback) successCallback(result);
                 } else {
                     alert(result.message || 'Ошибка выполнения действия.');
                 }
@@ -43,13 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Подключаем форму регистрации аккаунта
     handleFormSubmit('form[action="/register"]');
-
-    // Подключаем форму регистрации на турнир
     handleFormSubmit('form[action="/join-tournament"]');
 
-    // Подключаем форму входа (логина) со специфическим действием при успехе
+    // 5. Форма входа
     const loginForm = document.querySelector('form[action="/login"]');
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
@@ -67,16 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
                 
                 if (result.success) {
-                    // Сохраняем ник в памяти браузера
                     localStorage.setItem('loggedInUser', result.nickname);
                     alert(result.message);
                     loginForm.reset();
                     
-                    // Сразу меняем статус "Гость" в профиле без перезагрузки
                     const userProfileName = document.querySelector('#profile-username');
-                    if (userProfileName) {
-                        userProfileName.textContent = result.nickname;
-                    }
+                    if (userProfileName) userProfileName.textContent = result.nickname;
                 } else {
                     alert(result.message);
                 }
@@ -87,3 +118,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- ГЛОБАЛЬНЫЕ ФУНКЦИИ (ДЛЯ ONCLICK В HTML) ---
+
+// Раскрытие пунктов регламента
+function toggleRule(headerElement) {
+    const content = headerElement.nextElementSibling;
+    if (content) {
+        content.classList.toggle('show');
+    }
+}
+
+// Добавление игрока в ростер команды
+function draftPlayer(rowElement) {
+    const myTeamList = document.getElementById('my-team-list');
+    const emptyMsg = document.getElementById('empty-roster-msg');
+    
+    if (emptyMsg) emptyMsg.style.display = 'none';
+
+    const name = rowElement.cells[0].innerText;
+    const role = rowElement.cells[1].innerHTML;
+
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${role}</td>
+        <td><button onclick="this.closest('tr').remove()" style="background: transparent; color: var(--red-main); border: none; cursor: pointer;">✕ Удалить</button></td>
+    `;
+
+    myTeamList.appendChild(newRow);
+    rowElement.style.opacity = '0.4';
+    rowElement.style.pointerEvents = 'none';
+}
