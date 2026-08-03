@@ -164,3 +164,27 @@ function toggleRule(headerElem) {
         content.classList.add('show');
     }
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('open-login-btn');
+    const closeBtn = document.getElementById('close-login-btn');
+    const modal = document.getElementById('login-modal');
+
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+    }
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Закрытие при клике по темному фону вокруг окна
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
