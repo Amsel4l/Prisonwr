@@ -52,18 +52,18 @@ button { font-family: 'Montserrat', sans-serif; cursor: pointer; }
 }
 
 /* --- НАВИГАЦИЯ --- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid var(--border-dark);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-dark);
+            position: relative; /* ЗАМЕНИЛИ sticky на relative */
+            /* top: 0; - ЭТУ СТРОКУ УДАЛИЛИ */
+            z-index: 1000;
+        }
 
 .header-logo { display: flex; align-items: center; cursor: pointer; }
 
@@ -367,4 +367,100 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
         flex-direction: column;
         text-align: center;
     }
+}
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-panel: #111111;
+    --red-main: #d31616;
+    --text-white: #ffffff;
+    --text-gray: #8c8c8c;
+    --border-dark: #222222;
+}
+
+/* --- РЕГЛАМЕНТ И АККОРДЕОНЫ --- */
+.rules-accordion { 
+    margin-top: 25px; 
+    max-width: 900px; 
+}
+
+.rules-item { 
+    background: var(--bg-panel); 
+    border: 1px solid var(--border-dark); 
+    margin-bottom: 12px; 
+    border-radius: 4px; 
+    overflow: hidden; 
+}
+
+.rules-header { 
+    padding: 18px 25px; 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 18px; 
+    color: var(--text-white); 
+    background: rgba(255,255,255,0.02); 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    transition: color 0.2s;
+}
+
+.rules-header:hover { 
+    color: var(--red-main); 
+}
+
+.rules-content { 
+    padding: 20px 25px; 
+    font-size: 14px; 
+    color: var(--text-gray); 
+    line-height: 1.7; 
+    border-top: 1px solid var(--border-dark); 
+    display: none; 
+}
+
+.rules-content.show { 
+    display: block; 
+}
+
+.rules-content p { 
+    margin-bottom: 10px; 
+}
+
+.contact-box { 
+    background: var(--bg-panel); 
+    border-left: 4px solid var(--red-main); 
+    padding: 25px; 
+    margin-top: 30px; 
+    max-width: 900px; 
+}
+
+.section-title { 
+    font-family: 'Oswald', sans-serif; 
+    color: var(--red-main); 
+    margin: 40px 0 20px 0; 
+    font-size: 24px; 
+    border-bottom: 2px solid var(--border-dark); 
+    padding-bottom: 10px; 
+    max-width: 900px;
+}
+
+/* --- ТАБЛИЦЫ --- */
+.styled-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 15px 0; 
+    background: var(--bg-dark); 
+}
+
+.styled-table th, .styled-table td { 
+    border: 1px solid var(--border-dark); 
+    padding: 12px 15px; 
+    font-size: 13px; 
+    text-align: left; 
+}
+
+.styled-table th { 
+    color: var(--text-gray); 
+    text-transform: uppercase; 
+    font-size: 11px; 
+    letter-spacing: 1px; 
 }

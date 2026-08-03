@@ -150,3 +150,17 @@ function draftPlayer(rowElement) {
     rowElement.style.opacity = '0.4';
     rowElement.style.pointerEvents = 'none';
 }
+// --- Аккордеон регламента ---
+function toggleRule(headerElem) {
+    const content = headerElem.nextElementSibling;
+    const isVisible = content.classList.contains('show');
+    
+    // Закрываем все открытые вкладки в данном аккордеоне
+    const accordionContainer = headerElem.closest('.rules-accordion');
+    accordionContainer.querySelectorAll('.rules-content').forEach(c => c.classList.remove('show'));
+    
+    // Если кликнутая вкладка была закрыта — открываем её
+    if (!isVisible) {
+        content.classList.add('show');
+    }
+}
