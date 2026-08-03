@@ -291,3 +291,80 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
     .draft-grid { grid-template-columns: 1fr; }
     .graffiti-art { font-size: 50px; }
 }
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Экраны уже 768px) --- */
+@media (max-width: 768px) {
+    /* 1. Шапка и навигация сайта */
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .nav-wrapper {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    nav {
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    nav a {
+        font-size: 11px;
+    }
+
+    /* 2. Уменьшаем отступы страниц */
+    .page-container {
+        padding: 15px 10px;
+    }
+
+    /* 3. Уменьшаем слишком большие шрифты, чтобы они не ломали экран */
+    .worn-text {
+        font-size: 42px !important;
+        letter-spacing: 2px;
+    }
+    
+    .header-worn-text {
+        font-size: 24px !important;
+    }
+    
+    .bg-typography {
+        font-size: 70px !important; /* Фоновый текст станет меньше */
+    }
+    
+    .graffiti-art {
+        font-size: 36px !important;
+    }
+    
+    .graffiti-art .sub-slogan {
+        font-size: 14px !important;
+        letter-spacing: 2px;
+    }
+
+    /* 4. Выстраиваем колонки друг под другом */
+    .home-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .draft-grid {
+        grid-template-columns: 1fr; /* Драфт команд в один столбец */
+    }
+
+    .pdf-grid {
+        grid-template-columns: 1fr; /* Карточки "О нас" в один столбец */
+    }
+
+    /* 5. Уменьшаем внутренние отступы в блоках и формах */
+    .register-box, .profile-card, .draft-panel, .contact-box {
+        padding: 15px;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
