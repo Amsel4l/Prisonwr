@@ -471,13 +471,19 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
     right: 20px;
     z-index: 100;
     padding: 10px 20px;
-    background-color: #ff4655; /* Подберите цвет под ваш дизайн */
+    background-color: #ff4655;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
     transition: background 0.2s;
+    
+    /* Добавленные свойства, чтобы кнопка не растягивалась */
+    width: max-content; 
+    min-width: 100px;
+    display: inline-block;
+
 }
 
 .top-login-btn:hover {
@@ -492,7 +498,10 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
+    
+    /* ИЗМЕНЕНО: теперь окно по умолчанию спрятано */
+    display: none; 
+    
     justify-content: center;
     align-items: center;
     z-index: 1000;
