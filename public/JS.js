@@ -169,22 +169,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-login-btn');
     const modal = document.getElementById('login-modal');
 
+    // Открытие окна
     if (openBtn && modal) {
         openBtn.addEventListener('click', () => {
-            modal.style.display = 'flex';
+            modal.classList.add('active');
         });
     }
 
+    // Закрытие по крестику
     if (closeBtn && modal) {
         closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
         });
     }
 
-    // Закрытие при клике по темному фону вокруг окна
+    // Закрытие при клике мимо формы
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
         }
     });
 });
+

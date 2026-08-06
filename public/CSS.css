@@ -464,12 +464,12 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
     font-size: 11px; 
     letter-spacing: 1px; 
 }
-/* Кнопка войти в правом верхнем углу */
+/* Кнопка входа: теперь привязана к шапке и НЕ плавает при прокрутке */
 .top-login-btn {
-    position: fixed;
+    position: absolute; /* Привязываем к шапке */
     top: 20px;
     right: 20px;
-    z-index: 100;
+    z-index: 10;
     padding: 10px 20px;
     background-color: #ff4655;
     color: #fff;
@@ -478,48 +478,45 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
     cursor: pointer;
     font-weight: bold;
     transition: background 0.2s;
-    
-    /* Добавленные свойства, чтобы кнопка не растягивалась */
-    width: max-content; 
-    min-width: 100px;
-    display: inline-block;
-
+    width: auto;
 }
+
 
 .top-login-btn:hover {
     background-color: #fa5764;
 }
 
-/* Затемнение фона под модальным окном */
+/* Модальное окно: строго скрыто по умолчанию */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    
-    /* ИЗМЕНЕНО: теперь окно по умолчанию спрятано */
-    display: none; 
-    
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none; /* Гарантированно прячем окно */
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-/* Само модальное окно */
+/* Окно показывается ТОЛЬКО когда добавлен класс .active */
+.modal-overlay.active {
+    display: flex !important;
+}
+
+/* Внутренний блок формы */
 .modal-window {
-    background-color: #1f1f1f; /* Темный фон под киберспортивный стиль */
+    background-color: #1f1f1f;
     color: #fff;
     padding: 30px;
     border-radius: 8px;
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Кнопка закрытия (крестик) */
 .modal-close {
     position: absolute;
     top: 15px;
