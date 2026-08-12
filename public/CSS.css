@@ -568,3 +568,205 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
 .submit-btn:hover {
     background-color: #fa5764;
 }
+/* ========================================= */
+/*       КАЛЕНДАРЬ, ПОСТЕРЫ И ФОРМА          */
+/* ========================================= */
+
+/* Разделение экрана */
+.schedule-split-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.calendar-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-column {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 4px;
+    position: sticky;
+    top: 20px; /* Чтобы форма "ездила" за пользователем при скролле вниз */
+}
+
+/* Элементы календаря */
+.calendar-item {
+    background: #1a1a1a;
+    padding: 15px 20px;
+    border-left: 4px solid #444;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.calendar-item:hover {
+    border-left-color: #d31616;
+    background: #222;
+}
+
+.highlight-event {
+    border-left-color: #d31616;
+    background: rgba(211, 22, 22, 0.05);
+}
+
+/* --- Всплывающий постер-анонс --- */
+.hover-poster {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 15px); /* Появляется справа от даты, перекрывая правую колонку */
+    width: 320px;
+    background: #0a0a0a;
+    border: 2px solid #550000;
+    padding: 20px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(211, 22, 22, 0.2);
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-image: radial-gradient(circle at center, #1a0505 0%, #000000 100%);
+}
+
+.calendar-item:hover .hover-poster {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Типографика внутри постера */
+.poster-header {
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+.poster-header span {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.poster-dates {
+    text-align: center;
+    color: #d31616;
+    font-size: 24px;
+    font-weight: bold;
+    border-top: 1px solid #d31616;
+    border-bottom: 1px solid #d31616;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+
+.poster-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    color: #aaa;
+    font-size: 12px;
+}
+.poster-details li {
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+.poster-details strong {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.poster-footer {
+    text-align: center;
+    color: #666;
+    font-size: 10px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+/* Кнопка в постере */
+.join-btn {
+    width: 100%;
+    background: transparent;
+    color: #d31616;
+    border: 2px solid #d31616;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    text-shadow: 0 0 5px rgba(211, 22, 22, 0.5);
+}
+.join-btn:hover {
+    background: #d31616;
+    color: #fff;
+    box-shadow: 0 0 15px #d31616;
+}
+
+/* --- Стилизация чекбокса --- */
+.custom-checkbox {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    min-width: 20px;
+    height: 20px;
+    background-color: #222;
+    border: 1px solid #555;
+    margin-right: 10px;
+    margin-top: 2px;
+    position: relative;
+}
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #d31616;
+    border-color: #d31616;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkbox-text {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.4;
+}
+.rules-link {
+    color: #d31616;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.rules-link:hover {
+    color: #ff3333;
+}

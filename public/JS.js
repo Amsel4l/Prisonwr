@@ -191,3 +191,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const joinButtons = document.querySelectorAll('.join-btn');
+    const formContainer = document.getElementById('registration-form-container');
+    const placeholder = document.getElementById('registration-placeholder');
+    const eventDisplay = document.getElementById('selected-event-display');
+    const eventInput = document.getElementById('side_tournament_name');
+
+    // Обработка клика на кнопку "Присоединяйся" внутри постера
+    joinButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Предотвращаем срабатывание клика по самому календарю (если есть другие события)
+            e.stopPropagation(); 
+            
+            // Получаем название эвента из атрибута кнопки
+            const eventName = btn.getAttribute('data-event');
+            
+            // Обновляем текст и скрытый инпут
+            eventDisplay.textContent = eventName;
+            eventInput.value = eventName;
+            
+            // Меняем видимость колонок справа
+            placeholder.style.display = 'none';
+            formContainer.style.display = 'block';
+            
+            // Добавляем небольшую анимацию появления формы (опционально)
+            formContainer.style.opacity = 0;
+            setTimeout(() => {
+                formContainer.style.transition = 'opacity 0.3s ease';
+                formContainer.style.opacity = 1;
+            }, 10);
+        });
+    });
+});
+
+// Функция для переключения на вкладку с регламентом
+function openRulesTab(event) {
+    event.preventDefault(); // Чтобы страница не прыгала вверх
+    
+    // Скрываем все страницы
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    
+    // Показываем страницу регламента (убедитесь, что ID совпадает с вашим HTML)
+    const rulesPage = document.getElementById('page-rules');
+    if (rulesPage) {
+        rulesPage.classList.add('active');
+        // Опционально: скролл наверх страницы
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}

@@ -95,38 +95,7 @@
                         </form>
                     </div>
 
-                    <!-- Форма регистрации на МЕРОПРИЯТИЯ -->
-                    <div class="register-box">
-                        <form action="/join-tournament" method="POST">
-                            <h3>Регистрация участника</h3>
-                            <div class="form-group">
-                                <label>Выберите роль в турнире</label>
-                                <select name="regType" class="select-dark">
-                                    <option value="Участник">Участник</option>
-                                    <option value="Капитан (3+ баллов)">Капитан (3+ баллов)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>1. Ваш игровой никнейм</label>
-                                <input type="text" name="nickname" class="input-dark" placeholder="Например: ImperialPlayer" required>
-                            </div>
-                            <div class="form-group">
-                                <label>2. Желаемая и второстепенная роль</label>
-                                <input type="text" name="roles" class="input-dark" placeholder="Например: Mid / Top" required>
-                            </div>
-                            <div class="form-group">
-                                <label>3. Ваш максимальный ранг</label>
-                                <input type="text" name="rank" class="input-dark" placeholder="Например: Мастер / Грандмастер" required>
-                            </div>
-                            <div class="form-group">
-                                <label>4. Ваша актуальная гильдия</label>
-                                <input type="text" name="guild" class="input-dark" placeholder="Введите название гильдии" required>
-                            </div>
-                            <button type="submit" class="btn-solid" style="width: 100%; margin-top: 10px; height: 45px;">Зарегистрироваться</button>
-                        </form>
-                    </div>
-                </div>
-                
+                   
                 <div class="home-graphic">
                     <div class="graffiti-art">
                         NO ESCAPE<br>
@@ -614,15 +583,127 @@
             <h1>ТУРНИРЫ И КАСТОМКИ</h1>
             <p style="color: var(--text-gray); margin-bottom: 30px;">Участвуй в регулярных ивентах и зарабатывай рейтинг для выкупа.</p>
             
-            <div class="calendar-widget">
-                <button id="btn-toggle-calendar" class="btn-calendar">🗓 КАЛЕНДАРЬ ТУРНИРОВ</button>
-                <div id="schedule-box" class="schedule-box">
-                    <div class="schedule-item"><span class="schedule-date">10 Июля:</span> Отборочные игры (Группа А)</div>
-                    <div class="schedule-item"><span class="schedule-date">15 Июля:</span> Woman Cup - Групповая стадия</div>
-                    <div class="schedule-item"><span class="schedule-date">20 Июля:</span> Prison Custom - Полуфиналы</div>
-                    <div class="schedule-item"><span class="schedule-date">25 Июля:</span> Гранд-Финал месяца</div>
-                </div>
+           <!-- Контейнер для расписания и формы -->
+<div class="schedule-split-container">
+    
+    <!-- ЛЕВАЯ КОЛОНКА: Календарь -->
+    <div class="calendar-column">
+        
+        <!-- Кастомки (Каждые выходные) -->
+        <div class="calendar-item">
+            <span class="schedule-date">15-16 Августа:</span> Кастомки
+            
+            <!-- Всплывающий анонс (Стилизация под постер) -->
+            <div class="hover-poster">
+                <div class="poster-header">PRISON<br><span>АНОНС ИГРЫ</span></div>
+                <div class="poster-dates">15-16 АВГУСТА</div>
+                <ul class="poster-details">
+                    <li><i class="icon-calendar"></i> <strong>ДАТЫ ПРОВЕДЕНИЯ:</strong><br>15-16 АВГУСТА</li>
+                    <li><i class="icon-swords"></i> <strong>ФОРМАТ БОЁВ:</strong><br>BO3, BO5</li>
+                    <li><i class="icon-users"></i> <strong>НАБОР ОТКРЫТ!</strong><br>УЧАСТНИКОВ И КАПИТАНОВ</li>
+                    <li><i class="icon-chart"></i> <strong>РАССТАВЛЕНИЕ БАЛЛОВ</strong><br>БУДЕТ ПРОИЗВЕДЕНО</li>
+                </ul>
+                <button class="join-btn" data-event="Кастомки (15-16 Августа)">ПРИСОЕДИНЯЙСЯ</button>
+                <div class="poster-footer">ЧЕСТНАЯ ИГРА. УВАЖЕНИЕ. ПОБЕДА.</div>
             </div>
+        </div>
+
+        <div class="calendar-item">
+            <span class="schedule-date">22-23 Августа:</span> Кастомки
+            <div class="hover-poster">
+                <div class="poster-header">PRISON<br><span>АНОНС ИГРЫ</span></div>
+                <div class="poster-dates">22-23 АВГУСТА</div>
+                <ul class="poster-details">
+                    <li><i class="icon-calendar"></i> <strong>ДАТЫ ПРОВЕДЕНИЯ:</strong><br>22-23 АВГУСТА</li>
+                    <li><i class="icon-swords"></i> <strong>ФОРМАТ БОЁВ:</strong><br>BO3, BO5</li>
+                    <li><i class="icon-users"></i> <strong>НАБОР ОТКРЫТ!</strong><br>УЧАСТНИКОВ И КАПИТАНОВ</li>
+                </ul>
+                <button class="join-btn" data-event="Кастомки (22-23 Августа)">ПРИСОЕДИНЯЙСЯ</button>
+            </div>
+        </div>
+
+        <!-- PRISON TOURNAMENT (24-30 Августа) -->
+        <div class="calendar-item highlight-event">
+            <span class="schedule-date">24-30 Августа:</span> Prison Tournament
+            <div class="hover-poster tournament-poster">
+                <div class="poster-header">PRISON<br><span>ГЛАВНЫЙ ТУРНИР</span></div>
+                <div class="poster-dates">24-30 АВГУСТА</div>
+                <ul class="poster-details">
+                    <li><i class="icon-calendar"></i> <strong>ДАТЫ ПРОВЕДЕНИЯ:</strong><br>24-30 АВГУСТА</li>
+                    <li><i class="icon-swords"></i> <strong>ФОРМАТ БОЁВ:</strong><br>СЕТКА, BO3, ФИНАЛ BO5</li>
+                    <li><i class="icon-users"></i> <strong>НАБОР ОТКРЫТ!</strong><br>КОМАНДЫ И СОЛО ИГРОКИ</li>
+                </ul>
+                <button class="join-btn" data-event="Prison Tournament (24-30 Августа)">ПРИСОЕДИНЯЙСЯ</button>
+            </div>
+        </div>
+
+        <!-- Кастомки после турнира -->
+        <div class="calendar-item">
+            <span class="schedule-date">5-6 Сентября:</span> Кастомки
+            <div class="hover-poster">
+                <div class="poster-header">PRISON<br><span>АНОНС ИГРЫ</span></div>
+                <div class="poster-dates">5-6 СЕНТЯБРЯ</div>
+                <ul class="poster-details">
+                    <li><i class="icon-calendar"></i> <strong>ДАТЫ ПРОВЕДЕНИЯ:</strong><br>5-6 СЕНТЯБРЯ</li>
+                    <li><i class="icon-swords"></i> <strong>ФОРМАТ БОЁВ:</strong><br>BO3, BO5</li>
+                </ul>
+                <button class="join-btn" data-event="Кастомки (5-6 Сентября)">ПРИСОЕДИНЯЙСЯ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА: Форма регистрации -->
+    <div class="form-column">
+        <div id="registration-form-container" style="display: none;">
+            <h3 style="text-transform: uppercase; margin-bottom: 5px;">Регистрация</h3>
+            <p id="selected-event-display" style="color: var(--red-main); margin-bottom: 20px; font-weight: bold;"></p>
+            
+            <form action="/join-tournament" method="POST">
+                <input type="hidden" name="tournament_name" id="side_tournament_name">
+                
+                <div class="input-group">
+                    <label>Выберите роль</label>
+                    <select name="regType" class="input-dark">
+                        <option value="Участник">Участник</option>
+                        <option value="Капитан">Капитан (3+ баллов)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>1. Ваш игровой никнейм</label>
+                    <input type="text" name="nickname" class="input-dark" placeholder="Например: ImperialPlayer" required>
+                </div>
+                <div class="input-group">
+                    <label>2. Желаемая и второстепенная роль</label>
+                    <input type="text" name="roles" class="input-dark" placeholder="Например: Mid / Top" required>
+                </div>
+                <div class="input-group">
+                    <label>3. Ваш максимальный ранг</label>
+                    <input type="text" name="rank" class="input-dark" placeholder="Например: Мастер" required>
+                </div>
+                
+                <!-- НОВЫЙ 4 ПУНКТ: Обязательный регламент -->
+                <div class="input-group checkbox-group" style="margin-top: 15px; margin-bottom: 20px;">
+                    <label class="custom-checkbox">
+                        <!-- Атрибут required не даст отправить форму без галочки -->
+                        <input type="checkbox" name="rules_accepted" required>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            Обязательное условие: я подтверждаю, что внимательно изучил(а) и обязуюсь соблюдать 
+                            <a href="#" onclick="openRulesTab(event)" class="rules-link">Регламент проведения игр</a>.
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-solid" style="width: 100%; height: 45px;">ПОДАТЬ ЗАЯВКУ</button>
+            </form>
+        </div>
+        
+        <!-- Заглушка, пока не выбрано мероприятие -->
+        <div id="registration-placeholder" style="text-align: center; color: #666; padding: 50px 20px;">
+            <p>Наведите на мероприятие в календаре и нажмите "Присоединяйся", чтобы открыть форму регистрации.</p>
+        </div>
+    </div>
+</div>
         </section>
 
         <!-- 6. КОМАНДЫ И РОСТЕРЫ (ДРАФТ + РЕЕСТР) -->

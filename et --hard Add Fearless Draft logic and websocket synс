@@ -1,0 +1,16 @@
+[33md74ce8d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Update Prison platform: fixed draft logic, rules and server handlers
+[33m39e1073[m Fix draft UI and image paths
+[33m64718c0[m Add Fearless Draft logic and websocket sync
+[33m41c05ad[m Исправление позиционирования кнопки и модального окна
+[33m59779d6[m Исправление кнопки входа и модального окна
+[33mee2337b[m Добавлено модальное окно входа
+[33m272f17d[m Обновление страницы Регламент и стилей
+[33mc5f91a0[m Обновление файлов index и CSS
+[33m9c550ef[m Исправление темной темы и кликабельности кнопок
+[33m1bb3f85[m Обновлены файлы платформы и пути к ним
+[33mc80246c[m Обновить .gitignore и добавить файлы проекта
+[33m913b994[m Merge branch 'main' of https://github.com/Amsel4l/Prisonwr                                                                                                   # especially if it merges an updated upstream into a topic branch.
+[33md8483fa[m Добавлены стили и файлы интерфейса
+[33mfd13cbd[m Добавлены стили, скрипты и обновлен package-lock.json
+[33mc568d21[m First commit
+[33m689306d[m Initial commit
