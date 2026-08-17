@@ -45,7 +45,7 @@
     <a href="javascript:void(0);" onclick="adminLogout()" class="admin-only" style="color: #ff4444;">[ ВЫХОД ]</a>
 </nav>
             <div class="header-buttons">
-                <button class="btn-outline" data-target="profile">Мой профиль</button>
+                <button class="btn-outline admin-only" data-target="profile">Мой профиль</button>
             </div>
         </div>
     </header>
@@ -70,7 +70,7 @@
                     </a>
 
                     <!-- НОВАЯ: Форма регистрации на саму ПЛАТФОРМУ -->
-                    <div class="register-box" style="margin-bottom: 25px;">
+                    <div class="register-box admin-only" style="margin-bottom: 25px;">
                         <form action="/register" method="POST">
                             <h3>Регистрация на платформе</h3>
                             <div class="form-group">
@@ -90,7 +90,7 @@
                     </div>
 
                     <!-- Вход в аккаунт (Логин) -->
-                    <div class="register-box" style="margin-bottom: 25px;">
+                    <div class="register-box admin-only" style="margin-bottom: 25px;">
                         <form action="/login" method="POST">
                             <h3>Вход в аккаунт</h3>
                             <div class="form-group">
@@ -559,54 +559,24 @@
         </table>
     </div>
 
-   <script>
-    function showRegulationTab(name, button) {
-        const page = document.getElementById('page-regulations');
-        if (!page) return;
+    <script>
+        function showRegulationTab(name, button) {
+            const page = document.getElementById('page-regulations');
+            const target = document.getElementById('reg-' + name);
+            if (!page || !target || !button) return;
 
-        const panels = page.querySelectorAll('.reg-panel');
-        const tabs = page.querySelectorAll('.reg-tab');
-        const target = document.getElementById('reg-' + name);
+            page.querySelectorAll('.reg-panel').forEach(function(panel) {
+                panel.classList.toggle('active', panel === target);
+            });
 
-        if (!target) return;
+            page.querySelectorAll('.reg-tab').forEach(function(tab) {
+                tab.classList.toggle('active', tab === button);
+                tab.setAttribute('aria-selected', tab === button ? 'true' : 'false');
+            });
 
-        panels.forEach(function(panel) {
-            const isActive = panel === target;
-
-            panel.classList.toggle('active', isActive);
-
-            // Принудительно скрываем/показываем панели,
-            // чтобы переключение работало независимо от CSS.
-            panel.style.display = isActive ? 'block' : 'none';
-        });
-
-        tabs.forEach(function(tab) {
-            const isActive = tab === button;
-
-            tab.classList.toggle('active', isActive);
-            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-
-        window.scrollTo({
-            top: page.offsetTop - 20,
-            behavior: 'smooth'
-        });
-    }
-
-    // При открытии вкладки "Регламент" показываем
-    // только общий регламент.
-    document.addEventListener('DOMContentLoaded', function() {
-        const page = document.getElementById('page-regulations');
-        if (!page) return;
-
-        const panels = page.querySelectorAll('.reg-panel');
-        panels.forEach(function(panel) {
-            panel.style.display = panel.id === 'reg-general'
-                ? 'block'
-                : 'none';
-        });
-    });
-</script>
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
 </section>
 
         <!-- 4. ЛИЧНЫЙ КАБИНЕТ (ПРОФИЛЬ) -->
