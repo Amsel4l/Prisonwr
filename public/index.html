@@ -201,9 +201,9 @@
     <p class="reg-intro">Официальные правила Prison League: общий регламент, система баллов и капитанский регламент.</p>
 
     <div class="reg-tabs" role="tablist" aria-label="Разделы регламента">
-        <button type="button" class="reg-tab active" onclick="showRegulationTab('general', this)">ОБЩИЙ РЕГЛАМЕНТ</button>
-        <button type="button" class="reg-tab" onclick="showRegulationTab('points', this)">СИСТЕМА БАЛЛОВ</button>
-        <button type="button" class="reg-tab" onclick="showRegulationTab('captain', this)">КАПИТАНСКИЙ РЕГЛАМЕНТ</button>
+        <button type="button" class="reg-tab active" aria-selected="true" onclick="showRegulationTab('general', this)">ОБЩИЙ РЕГЛАМЕНТ</button>
+        <button type="button" class="reg-tab" aria-selected="false" onclick="showRegulationTab('points', this)">СИСТЕМА БАЛЛОВ</button>
+        <button type="button" class="reg-tab" aria-selected="false" onclick="showRegulationTab('captain', this)">КАПИТАНСКИЙ РЕГЛАМЕНТ</button>
     </div>
 
     <div id="reg-general" class="reg-panel active">
@@ -561,14 +561,20 @@
 
     <script>
         function showRegulationTab(name, button) {
-            document.querySelectorAll('#page-regulations .reg-panel').forEach(function(panel) {
-                panel.classList.remove('active');
+            const page = document.getElementById('page-regulations');
+            const target = document.getElementById('reg-' + name);
+            if (!page || !target || !button) return;
+
+            page.querySelectorAll('.reg-panel').forEach(function(panel) {
+                panel.classList.toggle('active', panel === target);
             });
-            document.querySelectorAll('#page-regulations .reg-tab').forEach(function(tab) {
-                tab.classList.remove('active');
+
+            page.querySelectorAll('.reg-tab').forEach(function(tab) {
+                tab.classList.toggle('active', tab === button);
+                tab.setAttribute('aria-selected', tab === button ? 'true' : 'false');
             });
-            document.getElementById('reg-' + name).classList.add('active');
-            button.classList.add('active');
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </section>
