@@ -1,1 +1,65 @@
 <h1>Секретная панель PRISON</h1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>PRISON - Админ Панель</title>
+    <link rel="stylesheet" href="/CSS.css">
+    <style>
+        body { padding: 40px; }
+        .admin-header { display: flex; justify-content: space-between; margin-bottom: 30px; border-bottom: 2px solid var(--red-main); padding-bottom: 10px; }
+        .score-input { background: var(--bg-dark); color: white; border: 1px solid var(--border-dark); padding: 5px; width: 60px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1 class="worn-text">PRISON <span class="red-i">ADMIN</span></h1>
+        <a href="/" class="btn-outline" style="height: 40px; display: flex; align-items: center;">Вернуться на сайт</a>
+    </div>
+
+    <div class="contact-box" style="margin-bottom: 20px;">
+        <h3 style="color: var(--red-main); margin-bottom: 10px;">ЗАЯВКИ НА ТУРНИР (Из базы)</h3>
+        <table class="styled-table" id="requests-table">
+            <thead>
+                <tr>
+                    <th>Никнейм</th>
+                    <th>Роль</th>
+                    <th>Ранг</th>
+                    <th>Дата заявки</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Сюда прилетят данные из БД -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Простенький скрипт для выгрузки заявок, используя твой роут из server.js
+        async function loadTournaments() {
+            try {
+                const res = await fetch('/api/admin/tournaments');
+                if (res.ok) {
+                    const data = await res.json();
+                    const tbody = document.querySelector('#requests-table tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(req => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${req.nickname}</td>
+                                <td>${req.roles}</td>
+                                <td>${req.rank}</td>
+                                <td>${req.appliedAt}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            } catch (err) {
+                console.error("Ошибка загрузки данных", err);
+            }
+        }
+        
+        loadTournaments();
+    </script>
+</body>
+</html>
