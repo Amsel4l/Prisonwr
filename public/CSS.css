@@ -1004,4 +1004,123 @@ body.is-admin .admin-only {
     .rules-grid { grid-template-columns: 1fr; }
     .wide-card { grid-column: auto; }
     .rule-card { padding: 15px; }
+}.regulations-lead {
+    color: var(--text-gray);
+    max-width: 850px;
+    line-height: 1.65;
+    margin-top: 10px;
+}
+.regulations-badge {
+    border: 1px solid var(--red-main);
+    color: var(--red-main);
+    padding: 8px 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+.reg-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 25px 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-dark);
+}
+.reg-tab {
+    appearance: none;
+    border: 1px solid var(--border-dark);
+    background: var(--bg-panel);
+    color: var(--text-gray);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    transition: .2s ease;
+}
+.reg-tab:hover { color: var(--text-white); border-color: #444; }
+.reg-tab.active { color: var(--text-white); background: var(--red-main); border-color: var(--red-main); }
+.reg-panel { max-width: 1000px; animation: fadeIn .25s ease; }
+.reg-panel[hidden] { display: none !important; }
+.reg-section-label { margin-top: 30px; }
+.reg-intro {
+    color: var(--text-gray);
+    line-height: 1.7;
+    background: rgba(211,22,22,.05);
+    border-left: 3px solid var(--red-main);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+}
+.reg-rule-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+.compact-grid .reg-rule-card { min-height: 0; }
+.reg-rule-card {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 16px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-dark);
+    border-left: 3px solid #2a2a2a;
+    padding: 18px;
+    transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.reg-rule-card:hover { border-left-color: var(--red-main); background: #151515; transform: translateY(-1px); }
+.reg-rule-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--red-main);
+    font-weight: 700;
+}
+.reg-rule-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    letter-spacing: .4px;
+}
+.reg-rule-card p, .reg-rule-card li {
+    color: var(--text-gray);
+    font-size: 13px;
+    line-height: 1.7;
+}
+.reg-rule-card p + p { margin-top: 9px; }
+.reg-note { font-size: 12px !important; color: #aaa !important; }
+.reg-wide-card { grid-column: 1 / -1; }
+.reg-formula-box {
+    margin-top: 14px;
+    padding: 12px 15px;
+    border: 1px solid #3a1010;
+    background: rgba(211,22,22,.07);
+    color: var(--text-white);
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    letter-spacing: .6px;
+}
+.reg-table-scroll { overflow-x: auto; }
+.reg-table { min-width: 560px; margin-top: 14px; }
+.reg-table th { background: #141414; }
+.reg-table td:first-child { color: var(--text-white); }
+.captain-table { min-width: 680px; }
+@media (max-width: 768px) {
+    .regulations-head { align-items: flex-start; flex-direction: column; }
+    .regulations-badge { align-self: flex-start; }
+    .reg-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 12px; }
+    .reg-tab { white-space: nowrap; flex: 0 0 auto; }
+    .reg-rule-grid { grid-template-columns: 1fr; }
+    .reg-wide-card { grid-column: auto; }
+    .reg-rule-card { padding: 15px; }
+}
+
+/* Акцентные значения внутри нового регламента */
+.reg-emphasis {
+    color: var(--red-main);
+    font-weight: 700;
 }
