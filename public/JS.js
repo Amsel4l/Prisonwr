@@ -248,15 +248,55 @@ async function checkAdminStatus() {
         const res = await fetch('/api/check-admin');
         const data = await res.json();
 
-        if (data.isAdmin) {
-            // Показываем элементы админа (например, добавляем класс к body)
+        const isAdmin = data.isAdmin === true;
+
+        // Элементы, которые должны быть видны только администратору
+        const homeRegisterBoxes = document.querySelectorAll(
+            '#page-home .register-box'
+        );
+
+        const profileButton = document.querySelector(
+            '.header-buttons [data-target="profile"]'
+        );
+
+        // Формы регистрации/входа на главной
+        homeRegisterBoxes.forEach((element) => {
+            element.style.display = isAdmin ? '' : 'none';
+        });
+
+        // Кнопка "Мой профиль" в шапке
+        if (profileButton) {
+            profileButton.style.display = isAdmin ? '' : 'none';
+        }
+
+        // Остальные admin-only элементы сайта
+        document.querySelectorAll('.admin-only').forEach((element) => {
+            element.style.display = isAdmin ? '' : 'none';
+        });
+
+        // Сохраняем существующую логику admin-режима
+        if (isAdmin) {
             document.body.classList.add('is-admin');
             console.log('Админ-режим активен');
         } else {
             document.body.classList.remove('is-admin');
         }
+
     } catch (err) {
         console.error('Ошибка проверки прав:', err);
+
+        // При ошибке проверки ничего приватного не показываем
+        document.querySelectorAll('#page-home .register-box').forEach((element) => {
+            element.style.display = 'none';
+        });
+
+        const profileButton = document.querySelector(
+            '.header-buttons [data-target="profile"]'
+        );
+
+        if (profileButton) {
+            profileButton.style.display = 'none';
+        }
     }
 }
 
