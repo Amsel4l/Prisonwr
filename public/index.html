@@ -31,7 +31,6 @@
     <a href="javascript:void(0);" data-target="home" class="active" id="nav-home">Главная</a>
     <a href="javascript:void(0);" data-target="about" id="nav-about">О нас</a> <!-- Переименовали с "О нас / Гайд" -->
     <a href="javascript:void(0);" data-target="regulations" id="nav-regulations">Регламент</a>
-    <a href="javascript:void(0);" data-target="rating" id="nav-rating">Рейтинг</a> <!-- НОВАЯ ВКЛАДКА -->
     
     <!-- Скрытая кнопка профиля -->
     <a href="javascript:void(0);" id="nav-profile" style="display: none;">Мой профиль</a>
@@ -797,46 +796,6 @@
         </section>
 
     </main>
-    <!-- РАЗДЕЛ РЕЙТИНГА -->
-<div id="rating" class="content-section" style="display: none;">
-    <div class="rating-header">
-        <h2 class="section-title">ТАБЛИЦА РЕЙТИНГА ИГРОКОВ</h2>
-    </div>
-
-    <!-- Панель управления (Поиск и Фильтр) -->
-    <div class="rating-controls">
-        <input type="text" id="rating-search" placeholder="Поиск по никнейму или тегу..." oninput="filterRating()">
-        
-        <select id="role-filter" onchange="filterRating()">
-            <option value="ALL">Все роли</option>
-            <option value="TOP">TOP (Топ)</option>
-            <option value="MID">MID (Мид)</option>
-            <option value="JNGL">JNGL (Лес)</option>
-            <option value="ADC">ADC (Кэрри)</option>
-            <option value="SUP">SUP (Саппорт)</option>
-        </select>
-    </div>
-
-    <!-- Сама таблица -->
-    <div class="table-container">
-        <table class="rating-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Тег</th>
-                    <th>Никнейм</th>
-                    <th>Очки</th>
-                    <th>П. Роль</th>
-                    <th>В. Роль</th>
-                </tr>
-            </thead>
-            <tbody id="rating-tbody">
-                <!-- Сюда скрипт вставит 104 игрока -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
     <script src="JS.js"></script>
 <!-- Кнопка входа в правом верхнем углу (добавьте в вашу шапку/header) -->
 <button id="open-login-btn" class="top-login-btn">Войти</button>

@@ -779,6 +779,109 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
 body.is-admin .admin-only {
     display: block !important;
 }
+/* =========================================
+   РАЗДЕЛ РЕЙТИНГА
+   ========================================= */
+
+.rating-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(229, 57, 53, 0.6);
+}
+
+/* Панель управления (Поиск и фильтр) */
+.rating-controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  background: #15161d;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #282a36;
+  margin-bottom: 25px;
+}
+
+.rating-controls input,
+.rating-controls select {
+  background: #0d0d11;
+  border: 1px solid #323546;
+  border-radius: 6px;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.rating-controls input:focus,
+.rating-controls select:focus {
+  border-color: var(--red-main, #e53935);
+}
+
+.rating-controls input {
+  width: 250px;
+}
+
+/* Таблица рейтинга */
+.table-container {
+  overflow-x: auto;
+  background: #15161d;
+  border-radius: 8px;
+  border: 1px solid #2a2c3d;
+}
+
+.rating-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.rating-table th {
+  background: #1b1d28;
+  color: #a0a5b8;
+  padding: 14px 18px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #282a3a;
+}
+
+.rating-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #202230;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.rating-table tbody tr:hover {
+  background: #1d1f2c;
+}
+
+/* Красивые бейджики для ролей */
+.role-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.role-TOP { background: rgba(33, 150, 243, 0.2); color: #64b5f6; border: 1px solid #1e88e5; }
+.role-MID { background: rgba(156, 39, 176, 0.2); color: #ba68c8; border: 1px solid #ab47bc; }
+.role-JNGL { background: rgba(76, 175, 80, 0.2); color: #81c784; border: 1px solid #43a047; }
+.role-ADC { background: rgba(244, 67, 54, 0.2); color: #e57373; border: 1px solid #e53935; }
+.role-SUP { background: rgba(255, 193, 7, 0.2); color: #ffd54f; border: 1px solid #ffb300; }
+.role-unknown { background: rgba(158, 158, 158, 0.2); color: #b0bec5; border: 1px solid #78909c; }
+
 /* ===== ОБНОВЛЁННЫЙ БЛОК РЕГЛАМЕНТА ===== */
 .regulations-head {
     display: flex;
