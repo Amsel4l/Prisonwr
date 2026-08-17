@@ -1,14 +1,36 @@
+require('dotenv').config(); // Подключение переменных окружения (секретов)
 const express = require('express');
+const session = require('express-session'); // Модуль для сессий
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
 
-// --- НАСТРОЙКИ СЕРВЕРА ---
+// --- НАСТРОЙКИ СЕРВЕРА И МИДЛВАРЫ ---
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Подключение к базе данных SQLite (файл создастся автоматически)
+// Настройка сессий (печенек) для админки — ВАЖНО: должно быть ДО роутов
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'prison-secret-key-2026', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        httpOnly: true, 
+        maxAge: 1000 * 60 * 60 * 24 // Сессия живет 24 часа
+    }
+}));
+
+// Функция-охранник: пропускает только админа
+function requireAdmin(req, res, next) {
+    if (req.session && req.session.isAdmin) {
+        next();
+    } else {
+        res.status(403).json({ error: 'Доступ запрещен' });
+    }
+}
+
+// --- ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ ---
 const dbPath = path.join(__dirname, 'database.db');
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
@@ -18,7 +40,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Создаем таблицы, если они еще не существуют
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +60,53 @@ db.serialize(() => {
     )`);
 });
 
-// 1. Регистрация на платформе
+// ==========================================
+// --- 👑 АДМИНСКИЕ МАРШРУТЫ (Управление сайтом) ---
+// ==========================================
+
+// Логин для администратора
+app.post('/api/admin-login', (req, res) => {
+    const { password } = req.body;
+    // Берем пароль из файла .env или используем стандартный
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'твой_супер_пароль'; 
+
+    if (password === ADMIN_PASSWORD) {
+        req.session.isAdmin = true; // Выдаем админскую печеньку
+        res.json({ success: true });
+    } else {
+        res.status(401).json({ success: false, message: 'Неверный пароль' });
+    }
+});
+
+// Проверка статуса (для показа скрытых вкладок)
+app.get('/api/check-admin', (req, res) => {
+    res.json({ isAdmin: !!(req.session && req.session.isAdmin) });
+});
+
+// Выход из админки
+app.post('/api/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({ message: 'Ошибка при выходе' });
+        res.clearCookie('connect.sid');
+        res.json({ success: true });
+    });
+});
+
+// Пример: Защищенный маршрут (доступен только админу).
+// Позже ты можешь использовать его, чтобы выводить список заявок в админ-панель
+app.get('/api/admin/tournaments', requireAdmin, (req, res) => {
+    db.all(`SELECT * FROM tournaments`, [], (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(rows);
+    });
+});
+
+
+// ==========================================
+// --- 🎮 ПОЛЬЗОВАТЕЛЬСКИЕ МАРШРУТЫ (Публичные) ---
+// ==========================================
+
+// 1. Регистрация игроков на платформе
 app.post('/register', (req, res) => {
     const { nickname, contact, password } = req.body;
     const registeredAt = new Date().toLocaleString('ru-RU');
@@ -57,7 +124,7 @@ app.post('/register', (req, res) => {
     });
 });
 
-// 2. Вход в аккаунт (Логин)
+// 2. Вход в аккаунт игроков (Логин)
 app.post('/login', (req, res) => {
     const { nickname, password } = req.body;
 
@@ -85,7 +152,7 @@ app.post('/login', (req, res) => {
     });
 });
 
-// 3. Регистрация на турнир / кастомку
+// 3. Заявки на турнир / кастомку
 app.post('/join-tournament', (req, res) => {
     const { regType, nickname, roles, rank, guild } = req.body;
     const appliedAt = new Date().toLocaleString('ru-RU');
@@ -103,7 +170,7 @@ app.post('/join-tournament', (req, res) => {
     });
 });
 
-// --- ЗАПУСК (с динамическим портом для хостинга) ---
+// --- ЗАПУСК ---
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Сервер PRISON успешно запущен на порту ${PORT}`);
