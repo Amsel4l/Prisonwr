@@ -91,6 +91,10 @@ app.post('/api/logout', (req, res) => {
         res.json({ success: true });
     });
 });
+// Защищенный маршрут: отдаем HTML-файл админки ТОЛЬКО если есть сессия
+app.get('/admin-panel', requireAdmin, (req, res) => {
+    res.sendFile(path.join(__dirname, 'private', 'admin.html'));
+});
 
 // Пример: Защищенный маршрут (доступен только админу).
 // Позже ты можешь использовать его, чтобы выводить список заявок в админ-панель

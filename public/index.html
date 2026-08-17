@@ -26,14 +26,19 @@
         </div>
         
         <div class="nav-wrapper" id="nav-menu">
-            <nav>
-                <a href="javascript:void(0);" data-target="home" class="active" id="nav-home">Главная</a>
-                <a href="javascript:void(0);" data-target="about" id="nav-about">О нас / Гайд</a>
-                <a href="javascript:void(0);" data-target="regulations" id="nav-regulations">Регламент</a>
-                <a href="javascript:void(0);" data-target="tournaments" id="nav-tournaments">Турниры</a>
-                <a href="javascript:void(0);" data-target="teams" id="nav-teams">Команды и Ростеры</a>
-                <a href="javascript:void(0);" data-target="stats" id="nav-stats">Статистика KDA</a>
-            </nav>
+           <nav>
+    <a href="javascript:void(0);" data-target="home" class="active" id="nav-home">Главная</a>
+    <a href="javascript:void(0);" data-target="about" id="nav-about">О нас / Гайд</a>
+    <a href="javascript:void(0);" data-target="regulations" id="nav-regulations">Регламент</a>
+    
+    <!-- Вкладки, скрытые от гостей -->
+    <a href="javascript:void(0);" data-target="tournaments" id="nav-tournaments" class="admin-only">Турниры</a>
+    <a href="javascript:void(0);" data-target="teams" id="nav-teams" class="admin-only">Команды и Ростеры</a>
+    <a href="javascript:void(0);" data-target="stats" id="nav-stats" class="admin-only">Статистика KDA</a>
+    
+    <!-- Ссылка на выход из админки (появится только у тебя) -->
+    <a href="javascript:void(0);" onclick="adminLogout()" class="admin-only" style="color: var(--red-main);">[ Выйти ]</a>
+</nav>
             <div class="header-buttons">
                 <button class="btn-outline" data-target="profile">Мой профиль</button>
             </div>

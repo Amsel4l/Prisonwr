@@ -242,3 +242,31 @@ function openRulesTab(event) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
+// Функция проверки прав админа при загрузке страницы
+async function checkAdminStatus() {
+    try {
+        const res = await fetch('/api/check-admin');
+        const data = await res.json();
+
+        if (data.isAdmin) {
+            // Показываем элементы админа (например, добавляем класс к body)
+            document.body.classList.add('is-admin');
+            console.log('Админ-режим активен');
+        } else {
+            document.body.classList.remove('is-admin');
+        }
+    } catch (err) {
+        console.error('Ошибка проверки прав:', err);
+    }
+}
+
+// Запускаем проверку после загрузки страницы
+document.addEventListener('DOMContentLoaded', checkAdminStatus);
+
+// Функция для выхода из аккаунта
+async function adminLogout() {
+    const res = await fetch('/api/logout', { method: 'POST' });
+    if (res.ok) {
+        window.location.reload(); // Перезагружаем страницу после выхода
+    }
+}

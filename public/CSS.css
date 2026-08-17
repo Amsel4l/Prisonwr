@@ -770,3 +770,12 @@ th { color: var(--text-gray); text-transform: uppercase; font-size: 11px; letter
 .rules-link:hover {
     color: #ff3333;
 }
+/* По умолчанию скрываем админские кнопки/панели */
+.admin-only {
+    display: none !important;
+}
+
+/* Если на body есть класс is-admin — показываем их */
+body.is-admin .admin-only {
+    display: block !important;
+}
