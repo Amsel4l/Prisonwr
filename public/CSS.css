@@ -1124,3 +1124,45 @@ body.is-admin .admin-only {
     color: var(--red-main);
     font-weight: 700;
 }
+/* --- ИСПРАВЛЕНИЕ КАРТОЧЕК РЕГЛАМЕНТА --- */
+
+#page-regulations .reg-rule-card {
+    display: block !important;
+    padding: 20px 22px !important;
+}
+
+#page-regulations .reg-rule-number {
+    display: block !important;
+    width: auto !important;
+    margin-bottom: 10px !important;
+    line-height: 1.15 !important;
+}
+
+#page-regulations .reg-rule-title {
+    display: block !important;
+    width: auto !important;
+    margin-bottom: 12px !important;
+    line-height: 1.25 !important;
+}
+
+#page-regulations .reg-rule-text {
+    display: block !important;
+    width: 100% !important;
+    line-height: 1.65 !important;
+}
+
+@media (min-width: 769px) {
+    #page-regulations .reg-rule-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 14px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #page-regulations .reg-rule-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+}
