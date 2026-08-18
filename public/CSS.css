@@ -1518,3 +1518,246 @@ td{border-bottom-color:#25252a !important;color:#aaaab0;}
   .reg-tab{flex:0 0 auto !important;white-space:nowrap !important;}
   .register-box{max-width:none !important;}
 }
+
+/* =========================================================
+   PUBLIC RATING — FINAL VIEW
+   Только пользовательский интерфейс. Редактирование — в админ-панели.
+   ========================================================= */
+
+.rating-page{
+    max-width:1200px;
+    margin:0 auto;
+    padding:12px 0 45px;
+}
+
+.rating-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    padding-bottom:22px;
+    margin-bottom:18px;
+    border-bottom:1px solid var(--border-dark);
+}
+
+.rating-heading h1{
+    margin:8px 0 0;
+    color:var(--text-white);
+    font-family:'Oswald',sans-serif;
+    font-size:clamp(34px,5vw,62px);
+    line-height:.95;
+    letter-spacing:.02em;
+}
+
+.rating-eyebrow{
+    color:#66666c;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+}
+
+.rating-heading > p{
+    margin:0;
+    max-width:500px;
+    color:var(--text-gray);
+    font-size:14px;
+    line-height:1.65;
+}
+
+.rating-toolbar{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+    margin-bottom:16px;
+}
+
+.rating-search-wrap{
+    position:relative;
+    flex:1 1 auto;
+    min-width:0;
+}
+
+.rating-search-icon{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-52%);
+    color:#666;
+    font-size:19px;
+    pointer-events:none;
+}
+
+.rating-search{
+    width:100%;
+    height:46px;
+    padding:0 15px 0 40px;
+    background:var(--bg-dark);
+    border:1px solid var(--border-dark);
+    color:var(--text-white);
+    outline:none;
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+}
+
+.rating-search:focus{
+    border-color:#444;
+}
+
+.rating-sort{
+    width:190px;
+    height:46px;
+    padding:0 12px;
+    background:var(--bg-dark);
+    border:1px solid var(--border-dark);
+    color:var(--text-white);
+    outline:none;
+    font-family:'Montserrat',sans-serif;
+    font-size:13px;
+}
+
+.rating-sort:focus{
+    border-color:#444;
+}
+
+.rating-table-wrap{
+    width:100%;
+    overflow-x:auto;
+    background:var(--bg-panel);
+    border:1px solid var(--border-dark);
+}
+
+.rating-table{
+    width:100%;
+    min-width:880px;
+    margin:0;
+    border-collapse:collapse;
+    background:var(--bg-panel);
+}
+
+.rating-table th,
+.rating-table td{
+    padding:13px 15px;
+    border-bottom:1px solid var(--border-dark);
+    text-align:left;
+    vertical-align:middle;
+}
+
+.rating-table th{
+    background:#0b0b0b !important;
+    color:#6e6e74 !important;
+    font-size:10px !important;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--border-dark);
+}
+
+.rating-table tbody tr{
+    transition:background-color .15s ease;
+}
+
+.rating-table tbody tr:hover{
+    background:rgba(255,255,255,.025) !important;
+}
+
+.rating-table tbody tr:hover td{
+    background:transparent !important;
+}
+
+.rating-pos{
+    width:64px;
+    color:#666;
+    font-weight:700;
+}
+
+.rating-tag{
+    color:var(--text-gray);
+    white-space:nowrap;
+}
+
+.rating-nick{
+    color:var(--text-white);
+    font-weight:700;
+}
+
+.rating-points{
+    color:var(--red-main) !important;
+    font-family:'Oswald',sans-serif;
+    font-size:18px !important;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.rating-role{
+    display:inline-block;
+    padding:4px 8px;
+    background:#151515;
+    border:1px solid #2a2a2a;
+    color:var(--text-white);
+    border-radius:2px;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+}
+
+.rating-role-secondary{
+    color:var(--text-gray);
+}
+
+/* Никакой подсветки первых трёх позиций */
+.rating-pos{
+    box-shadow:none !important;
+    background:transparent !important;
+    color:#666 !important;
+}
+
+/* Убираем старые управляющие/статистические стили рейтинга,
+   если они присутствовали в предыдущих версиях CSS. */
+.rating-controls,
+.rating-header,
+.table-container,
+.rating-controls + .table-container,
+.role-badge{
+    border-radius:0;
+}
+
+.rating-mobile-note{
+    display:none;
+    color:#666;
+    font-size:11px;
+    line-height:1.5;
+    margin-top:9px;
+}
+
+@media(max-width:768px){
+    .rating-page{
+        padding:6px 0 35px;
+    }
+
+    .rating-heading{
+        display:block;
+    }
+
+    .rating-heading > p{
+        margin-top:10px;
+    }
+
+    .rating-toolbar{
+        flex-direction:column;
+    }
+
+    .rating-sort{
+        width:100%;
+    }
+
+    .rating-mobile-note{
+        display:block;
+    }
+
+    .rating-table th,
+    .rating-table td{
+        padding:11px 12px;
+    }
+}
