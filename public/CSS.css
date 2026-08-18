@@ -1196,7 +1196,7 @@ body{
 body::selection{background:var(--red-main);color:#fff;}
 
 header{
-  position:sticky !important;
+  position:relative !important;
   top:0 !important;
   min-height:76px;
   padding:8px 34px !important;
@@ -1403,7 +1403,8 @@ nav a.active{
 }
 .reg-tab:hover{color:#fff !important;border-color:#4a4a50 !important;}
 .reg-tab.active{color:#fff !important;background:var(--red-main) !important;border-color:var(--red-main) !important;}
-.reg-panel{max-width:none !important;}
+.reg-panel{display:none !important;max-width:none !important;}
+.reg-panel.active{display:block !important;}
 .reg-rule-grid{
   display:grid !important;
   grid-template-columns:repeat(2,minmax(0,1fr)) !important;
