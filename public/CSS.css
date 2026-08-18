@@ -1761,3 +1761,10 @@ td{border-bottom-color:#25252a !important;color:#aaaab0;}
         padding:11px 12px;
     }
 }
+
+
+/* Final mobile/navigation correction */
+header {
+    position: relative !important;
+    top: auto !important;
+}
